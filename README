@@ -7,6 +7,10 @@ Lucian Popa
 P. Brighten Godfrey
 Alexandra Kolla
 
+LICENSE / USE
+-------------
+The graphRepo directory contains a collection of network topologies, which are not our work. The sources for these are cited in graphRepo/references.pdf. All other code / scripts / materials are original contributions of the above contributors, and are made available for use and modification without any restrictions, but without any guarantees. We would appreciate you citing this code and the most relevant of our associated research publications below.
+
 BACKGROUND
 --------------------
 The following three research papers explain the ideas behind this tool:
@@ -27,7 +31,7 @@ resultfiles -- The text output from the scripts which 'gnuplotscripts' use to ou
 scripts -- Contains a few scripts to generate results that appear in our papers.
 topology -- Temporary data holding directory where the linear program files are stored before they're run.
 upperBound -- Code for the upper bound on throughput; details in paper (2) above.
-graphrepo -- Several networks that we found in the public domain and tested. A description of the topologies is in graphRepo/sources.txt, and the appropriate references are cited in graphRepo/references.pdf. We are grateful to all the researchers that have made these network topologies available.
+graphRepo -- Several networks that we found in the public domain and tested. A description of the topologies is in graphRepo/sources.txt, and the appropriate references are cited in graphRepo/references.pdf. We are grateful to all the researchers that have made these network topologies available.
 
 INSTRUCTIONS FOR USE
 --------------------
