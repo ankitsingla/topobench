@@ -1,0 +1,3 @@
+Run ./pl_based_thput_bound.sh to obtain the throughput bound values for a variety of configurations
+
+Then you can run these configurations in the linear program to compute actual throughput and compare to the bound.

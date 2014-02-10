@@ -1,0 +1,54 @@
+PROJECT CONTRIBUTORS
+--------------------
+Ankit Singla (singla2@illinois.edu)
+Sangeetha Abdu Jyothi (abdujyo2@illinois.edu)
+Chi-Yao Hong
+Lucian Popa
+P. Brighten Godfrey
+Alexandra Kolla
+
+BACKGROUND
+--------------------
+The following three research papers explain the ideas behind this tool:
+
+(1) Jellyfish: Networking Data Centers Randomly (Ankit Singla, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey), 2012
+(2) High Throughput Data Center Topology Design (Ankit Singla, P. Brighten Godfrey, Alexandra Kolla), 2014
+(3) Measuring and Understanding Throughput of Network Topologies (Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, Alexandra Kolla), 2014
+
+(1) establishes the case for using random graphs as data center topologies. (2) further shows that not only do random graphs achieve higher throughput than traditional topologies, they are actually close to optimal. (2) also extends our results to heterogeneous topology design, where switches might not all have the same number of ports or the same line-speeds throughput. (3) explains the rationale for our use of the throughput metric and compares a large number of networks for throughput.
+
+CONTENTS AND STRUCTURE
+----------------------
+Directory listing:
+gnuplotscripts -- contains gnuplot plot files corresponding to some plots in our above papers (mostly (2)).
+lpmaker -- Java code which has a large number of graphs (in the 'graphs' subdir) and writes out the linear program for throughput for given graph parameters and traffic matrices (a few of which are encoded in Graph.java).
+plots -- This is where you'll find the plots in pdf format after you've run some scripts.
+resultfiles -- The text output from the scripts which 'gnuplotscripts' use to output 'plots'.
+scripts -- Contains a few scripts to generate results that appear in our papers.
+topology -- Temporary data holding directory where the linear program files are stored before they're run.
+upperBound -- Code for the upper bound on throughput; details in paper (2) above.
+graphrepo -- Several networks that we found in the public domain and tested. A description of the topologies is in graphRepo/sources.txt, and the appropriate references are cited in graphRepo/references.pdf. We are grateful to all the researchers that have made these network topologies available.
+
+INSTRUCTIONS FOR USE
+--------------------
+1.  You must have a linear program solver that accepts the standard LP format used by multiple available solvers. By default, our code uses the Gurobi solver (http://www.gurobi.com/) which is available free to academics. If you want to use a different solver, you'll need to rewrite scripts/lpRun.sh accordingly. If you want a solver that uses a different LP format, more extensive changes will be needed in Graph.java, where you'll modify the 'PrintGraphforMCFFairCondensed' method. If you're using Gurobi, please ensure that you can run it from the command line as 'gurobi_cl <a file containing some test linear program>'. Instructions for setting up Gurobi can be found on their website (and keep evolving over time).
+
+2.  If you've accomplished #1 above, you can quickly get something running and test that our code is working as expected, by changing to the 'scripts' directory and executing:
+	
+	./fatCompare.sh
+
+After execution, check the 'plots' directory for fatCompare.pdf. The values > 1 indicate that many more servers could have been added to Jellyfish while still achieving full throughput. Note that the script runs only 3 sizes for comparison with only 3 runs each for this quick demo. You can look at fatCompare.sh and uncomment a clearly marked line to be able to run the comparison for many sizes, and see a more meaningful plot result.
+
+3.  The other scripts in 'scripts' plot various other results from our papers. The clean.sh script deletes all temporary / data / result / plot files. The lpRun.sh script has already been discussed above.
+
+4.  You can write similar scripts to the ones in 'scripts' to run the multitude of graph types we have made available in lpmaker/graphs. All the results in our papers have been generated using variations of these scripts!
+
+5.  Paper (3) includes results on a large number of real-world graphs. These can be found in 'graphrepo'.
+
+NOTES
+-----
+* Error handling is poor at this time. For example, if you're running networks that are too large, there will be memory errors etc. These have not been gracefully handled so far.
+
+* This README, another README in upperBound, our papers mentioned above, and the comments in the code are the entirety of the documentation available. You can reach us at the email addresses mentioned above for other queries. Help is not promised, but if we have time, we can look into it.
+
+* The scripts use gnuplot 4.4 or higher (for the pdfcairo terminal). But if you don't have it, you can still get the result files in 'resultfiles' and plot them whichever way you like.

@@ -1,0 +1,178 @@
+For references please refer to references.pdf
+
+1-celegans-metabolic.txt
+	Metabolic network of Caenorhabditis elegans
+
+2-celegans-frontal.txt
+	Frontal network of Caenorhabditis elegans
+	
+3-celegans-neural.txt
+	Neural network of Caenorhabditis elegans
+
+4-airlines.txt
+	US Airlines network between airports in the US
+
+5-processor.txt
+	Network of components inside a processor
+
+6-program.txt
+	Interactions between components of a program
+
+7-finiteAutomaton.txt
+	A finite automaton used in a natural-language processing system
+
+8-sites.txt
+	The structure and content of a fragment of the World-Wide Web
+
+9-www-similar.txt
+	Network of similar web-pages
+
+10-DBModel.txt
+	Data model for database system
+
+11-LesMiserables.txt
+	Co-appearance of characters in the novel Les Miserables
+
+12-politicalBooks.txt
+	Co-purchasing of political books
+
+13-USAirports.txt
+	Network of 500 busiest commercial airports in the US
+
+14-football.txt
+	Network of American football games between colleges
+
+15-karate.txt
+	Relations between members of a karate club
+
+16-prison.txt
+	Sociometric choice data among prisoners
+
+17-students.txt
+	Relationship between university freshmen
+
+18-germanOpera.txt
+	Characters and their relations in the long-running German soap opera called `Lindenstrasse`
+
+19-team1.txt
+	Project team interactions
+
+20-dolphins.txt
+	Network of associations between  dolphins
+
+21-team2.txt
+	Project team interactions
+
+22-telephone.txt
+	Calls made between a set of telephone numbers
+
+23-manufacturing.txt
+	Computer-integrated manufacturing annotation
+
+24-diningPartners.txt
+	Dining table partners in a dormitory
+
+25-FamilyVisit1.txt
+26-FamilyVisit2.txt
+27-FamilyVisit3.txt
+	Visiting ties among families in Turrialba, Costa Rica
+
+28-flyingTeam.txt
+	Sociometric test among flying cadets
+
+29-hollywoodMusic.txt
+	Cooperation among producers and composers
+
+30-koreaFamilyPlanning.txt
+	Network of family planning discussion among women
+
+31-monastery.txt
+	Interactions among a group of monks
+
+32-sawmillPpl.txt
+	Communication network in a small enterprise - sawmill
+
+33-centralityPapers.txt
+	Network of papers that discuss network centrality and their cross-references
+
+34-drugStudy2.txt
+35-drugStudy3.txt
+	Discussion ties among 31 physicians participating in Columbia University Drug Study
+
+36-drugStudy.txt
+	Discussion ties between 17 physicians who adopted the new drug in Galesburg
+	
+37-dutchLiterature.txt
+	Critical attention among a set of Dutch literary authors and critics in 1976
+
+38-hiTechFirm.txt
+	Friendship ties among the employees in a Hi-Tech Firm
+
+39-mexicanPolitics.txt
+	Core network of Mexican political elite
+
+40-mathDiffusion.txt
+	The diffusion network of a new mathematics method in the 1950s
+
+41-sawmillStrike.txt
+	Communication structure among the employees in a saw-mill during a strike
+
+42-highTechManagers.txt
+	Krackhardt's high-tech managers
+
+43-FoodwebChesapeake.txt
+	Food web - Chesapeake Bay Mesohaline Net
+
+44-FoodwebChesLower.txt
+	Food web - Lower Chesapeake Bay in Summer
+
+45-FoodwebChesMiddle.txt
+	Food web - Middle Chesapeake Bay in Summer
+
+46-FoodwebChesUpper.txt
+	Food web - Upper Chesapeake Bay in Summer
+
+47-FoodwebCyprusDry.txt
+	Food web - Cypress, Dry Season
+
+48-FoodwebCyprusWet.txt
+	Food web - Cypress, Wet Season
+
+49-FoodwebMaspalomas.txt
+	Food web - Charca de Maspalomas
+
+50-FoodwebStMarksRiver.txt
+	Food web - St. Marks River (Florida) Flow network
+
+51-FoodwebMangroveDry.txt
+	Food web - Mangrove Estuary, Dry Season
+
+52-FoodwebMangroveWet.txt
+	Food web - Mangrove Estuary, Wet Season
+
+53-FoodwebFlBayDry.txt
+	Food web - Florida Bay, Dry Season
+
+54-FoodwebFlBayWet.txt
+	Food web - Florida Bay, Wet Season
+
+55-FoodwebFloridaBay.txt
+	Food web - Florida Bay Trophic Exchange Matrix
+
+56-FoodwebYthan.txt
+	Food web - Ythan Estuary
+
+57-AS1755.txt
+58-AS1755-r0.txt
+59-AS1755-r1.txt
+60-AS3257.txt
+61-AS3257-r1.txt
+62-AS4755-r0.txt
+63-AS4755-r1.txt
+64-AS6461.txt
+65-AS1239-r0.txt
+66-AS7018-r0.txt
+	Rocketfuel AS topologies
+	ASaaa-r0- core topology - backbone and gateways
+	ASaaa-r1 - core topology with fringe - radius 1 around backbone and gateways
+	ASaaa - complete topology
