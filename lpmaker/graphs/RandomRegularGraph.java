@@ -615,7 +615,7 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 
 				int idegree=0; // the current degree of node i
 				int iter=0; //the # of attempts
-				int mom_i_found_it=0;
+				int foundSuitableLink=0;
 				//we want to break "degree/2" edges
 				//suppose we choose edge (a,b) to break, then following three conditions has to meet:
 				//1) (a,b) has an edge
@@ -680,11 +680,11 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 						//System.out.println("ADD: ("+ fish + ", " + p2 + ")");
 						//System.out.println("RM : ("+  p1  + ", " + p2 + ")");
 
-						mom_i_found_it = 1;
+						foundSuitableLink = 1;
 					}
 				}
-				if(mom_i_found_it==0){	// Give up if can't find a proper link
-					System.out.println("WARNING: Dad, this is so weird");
+				if(foundSuitableLink==0){	// Give up if can't find a proper link
+					System.out.println("WARNING: can't find suitable link");
 					//return;
 				}
 			}
@@ -805,7 +805,7 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 				//System.out.println("Second stage. mode=" + mode + ", ex_size=" + ex_size);
 				int idegree=0; // the current degree of node i
 				int iter=0; //the # of attempts
-				int mom_i_found_it=0;
+				int foundSuitableLink=0;
 				//we want to break "degree/2" edges
 				//suppose we choose edge (a,b) to break, then following three conditions has to meet:
 				//1) (a,b) has an edge
@@ -870,11 +870,11 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 						//System.out.println("ADD: ("+ fish + ", " + p2 + ")");
 						//System.out.println("RM : ("+  p1  + ", " + p2 + ")");
 
-						mom_i_found_it = 1;
+						foundSuitableLink = 1;
 					}
 				}
-				if(mom_i_found_it==0){	// Give up if can't find a proper link
-					System.out.println("WARNING: Dad, this is so weird");
+				if(foundSuitableLink==0){	// Give up if can't find a proper link
+					System.out.println("WARNING: can't find suitable link");
 					//return;
 				}
 			}
@@ -1014,184 +1014,8 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 				}
 			}
 		}
-		/*
-		//second run. do the expansion.
-		if(mode>0 && ex_size>0)
-		{
-
-			for(int fish = noNodes-ex_size; fish < noNodes; fish++) // for each new fish
-			{
-
-				int idegree=0; // the current degree of node i
-				int iter=0; //the # of attempts
-				int mom_i_found_it=0;
-				//we want to break "degree/2" edges
-				//suppose we choose edge (a,b) to break, then following three conditions has to meet:
-				//1) (a,b) has an edge
-				//2) (i,a) has no edge
-				//3) (i,b) has no edge.
-				while(idegree <=  (degree - 2) && iter++ < 8000)
-				{
-					int p1=fish;
-					int p2=fish;
-					while(p1 == fish || p1 == p2){
-						p1 = rand.nextInt(noNodes);
-					}
-					while(p2 == fish || p2 == p1){
-						p2 = rand.nextInt(noNodes);
-					}
-					//now we have p1 != fish, p2 != fish, p1 != p2
-
-					// Check if an (p1, p2) edge already exists
-					int k1=0;
-					for(int i=0; i<adjacencyList[p1].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[p1].elementAt(i).intValue() == p2)
-						{
-							k1=1;
-						}
-					}
-					// Check if (fish,p1) edge already exists
-					int k2=0;
-					for(int i=0; i<adjacencyList[fish].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[fish].elementAt(i).intValue() == p1)
-						{
-							k2=1;
-						}
-					}
-					// Check if (fish,p2) edge already exists
-					int k3=0;
-					for(int i=0; i<adjacencyList[fish].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[fish].elementAt(i).intValue() == p2)
-						{
-							k3=1;
-						}
-					}
-
-					if(k1==1 && k2 == 0 && k3 == 0)	// Good keyboard, break it!
-					{
-						addBidirNeighbor(fish, p1);
-						addBidirNeighbor(fish, p2);
-						removeBidirNeighbor(p1, p2);
-
-						//System.out.println(adjacencyList[p1].size());
-						//System.out.println(adjacencyList[p2].size());
-						//System.out.println(adjacencyList[fish].size());
-						//System.out.println("=========");
-						idegree+=2;
-
-						//System.out.println("ADD: ("+ fish + ", " + p1 + ")");
-						//System.out.println("ADD: ("+ fish + ", " + p2 + ")");
-						//System.out.println("RM : ("+  p1  + ", " + p2 + ")");
-
-						mom_i_found_it = 1;
-					}
-				}
-				if(mom_i_found_it==0){	// Give up if can't find a proper link
-					System.out.println("WARNING: Dad, this is so weird");
-					//return;
-				}
-			}
-		}
-
-
-		//third run.
-		if(mode>0 && ex_size>0)
-		{
-			Vector still_to_link = new Vector(noNodes);		// Nodes with some degree still available
-			Vector degrees = new Vector(noNodes);			// Degree currently used up
-
-			for(int i = 0; i < noNodes; i++){
-				if(adjacencyList[i].size() != degree)
-				{
-					still_to_link.add(new Integer(i));			// Initialize with all nodes
-					degrees.add(new Integer(adjacencyList[i].size()));				// Initialize with '0' used degree
-				}
-			}
-
-			int stop_sign=0;	
-			while(!still_to_link.isEmpty() && stop_sign==0){
-				if(still_to_link.size() == 1){				// Ignores this case of 1 node left out
-					System.out.println("WARNING: Remaining just one node to link with degree "+degrees.elementAt(0)+" out of "+degree);
-					stop_sign=1;
-					//return;
-				}
-				boolean found = false;
-
-				int p1 = -1, p2 = -1;
-				Integer n1,n2;
-
-				int iteration = 0;
-				int MAX_ITERATION = 1000;
-				while(!found && iteration++ < MAX_ITERATION && stop_sign == 0){ // try until a node-pair to connect is found
-					p1 = rand.nextInt(still_to_link.size());
-					p2 = p1;
-					while(p2 == p1){
-						p2 = rand.nextInt(still_to_link.size());
-					}
-
-					n1 = (Integer)still_to_link.elementAt(p1);
-					n2 = (Integer)still_to_link.elementAt(p2);
-
-					// Check if an n1-n2 edge already exists
-					int k=0;
-					for(int i=0; i<adjacencyList[n1.intValue()].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[n1.intValue()].elementAt(i).intValue() == n2)
-						{
-							k=1;
-						}
-					}
-					if(k==0)	// Edge doesn't already exist. Good, add it!
-					{
-						found = true;
-						addBidirNeighbor(n1, n2);
-						//System.out.println("ADD: ("+ n1 + ", " + n2 + ")");
-					}
-				}
-				if(stop_sign==0)
-				{
-					if(iteration >= MAX_ITERATION){	// Give up if can't find a pair to link
-						System.out.println("WARNING: Unable to find new pair for link between:"+still_to_link);
-						stop_sign=1;
-						//return;
-					}
-					degrees.set(p1, new Integer(((Integer)(degrees.elementAt(p1))).intValue()+1));
-					degrees.set(p2, new Integer(((Integer)(degrees.elementAt(p2))).intValue()+1));
-					boolean deleted_p1 = false;
-					if(((Integer)degrees.elementAt(p1)).intValue() == degree){
-						// Degree exhausted => No longer available to connect
-						still_to_link.remove(p1);
-						degrees.remove(p1);
-						deleted_p1 = true;
-					}
-
-					// Just adjusting the vector index here, nothing related to high-level function
-					int p2_updated;
-					if(deleted_p1 && p1 < p2)
-						p2_updated = p2-1;
-					else
-						p2_updated = p2;
-
-					if(((Integer)degrees.elementAt(p2_updated)).intValue() == degree){
-						// Degree exhausted => No longer available to connect
-						still_to_link.remove(p2_updated);
-						degrees.remove(p2_updated);
-					}
-				}
-			}
-		}*/	
-		/*for(int i=0; i<noNodes; i++)
-								  {
-								  System.out.println(adjacencyList[i].size());
-								  }*/
 	}
+
 	private void populateAdjacencyList2Layer(int swdeg, int degree, int mode, int ex_size, int nsvrs, int pod_size){
 		int old_size = noNodes - ex_size;
 
@@ -1325,184 +1149,8 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 				}
 			}
 		}
-		/*
-		//second run. do the expansion.
-		if(mode>0 && ex_size>0)
-		{
-
-			for(int fish = noNodes-ex_size; fish < noNodes; fish++) // for each new fish
-			{
-
-				int idegree=0; // the current degree of node i
-				int iter=0; //the # of attempts
-				int mom_i_found_it=0;
-				//we want to break "degree/2" edges
-				//suppose we choose edge (a,b) to break, then following three conditions has to meet:
-				//1) (a,b) has an edge
-				//2) (i,a) has no edge
-				//3) (i,b) has no edge.
-				while(idegree <=  (degree - 2) && iter++ < 8000)
-				{
-					int p1=fish;
-					int p2=fish;
-					while(p1 == fish || p1 == p2){
-						p1 = rand.nextInt(noNodes);
-					}
-					while(p2 == fish || p2 == p1){
-						p2 = rand.nextInt(noNodes);
-					}
-					//now we have p1 != fish, p2 != fish, p1 != p2
-
-					// Check if an (p1, p2) edge already exists
-					int k1=0;
-					for(int i=0; i<adjacencyList[p1].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[p1].elementAt(i).intValue() == p2)
-						{
-							k1=1;
-						}
-					}
-					// Check if (fish,p1) edge already exists
-					int k2=0;
-					for(int i=0; i<adjacencyList[fish].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[fish].elementAt(i).intValue() == p1)
-						{
-							k2=1;
-						}
-					}
-					// Check if (fish,p2) edge already exists
-					int k3=0;
-					for(int i=0; i<adjacencyList[fish].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[fish].elementAt(i).intValue() == p2)
-						{
-							k3=1;
-						}
-					}
-
-					if(k1==1 && k2 == 0 && k3 == 0)	// Good keyboard, break it!
-					{
-						addBidirNeighbor(fish, p1);
-						addBidirNeighbor(fish, p2);
-						removeBidirNeighbor(p1, p2);
-
-						//System.out.println(adjacencyList[p1].size());
-						//System.out.println(adjacencyList[p2].size());
-						//System.out.println(adjacencyList[fish].size());
-						//System.out.println("=========");
-						idegree+=2;
-
-						//System.out.println("ADD: ("+ fish + ", " + p1 + ")");
-						//System.out.println("ADD: ("+ fish + ", " + p2 + ")");
-						//System.out.println("RM : ("+  p1  + ", " + p2 + ")");
-
-						mom_i_found_it = 1;
-					}
-				}
-				if(mom_i_found_it==0){	// Give up if can't find a proper link
-					System.out.println("WARNING: Dad, this is so weird");
-					//return;
-				}
-			}
-		}
-
-
-		//third run.
-		if(mode>0 && ex_size>0)
-		{
-			Vector still_to_link = new Vector(noNodes);		// Nodes with some degree still available
-			Vector degrees = new Vector(noNodes);			// Degree currently used up
-
-			for(int i = 0; i < noNodes; i++){
-				if(adjacencyList[i].size() != degree)
-				{
-					still_to_link.add(new Integer(i));			// Initialize with all nodes
-					degrees.add(new Integer(adjacencyList[i].size()));				// Initialize with '0' used degree
-				}
-			}
-
-			int stop_sign=0;	
-			while(!still_to_link.isEmpty() && stop_sign==0){
-				if(still_to_link.size() == 1){				// Ignores this case of 1 node left out
-					System.out.println("WARNING: Remaining just one node to link with degree "+degrees.elementAt(0)+" out of "+degree);
-					stop_sign=1;
-					//return;
-				}
-				boolean found = false;
-
-				int p1 = -1, p2 = -1;
-				Integer n1,n2;
-
-				int iteration = 0;
-				int MAX_ITERATION = 1000;
-				while(!found && iteration++ < MAX_ITERATION && stop_sign == 0){ // try until a node-pair to connect is found
-					p1 = rand.nextInt(still_to_link.size());
-					p2 = p1;
-					while(p2 == p1){
-						p2 = rand.nextInt(still_to_link.size());
-					}
-
-					n1 = (Integer)still_to_link.elementAt(p1);
-					n2 = (Integer)still_to_link.elementAt(p2);
-
-					// Check if an n1-n2 edge already exists
-					int k=0;
-					for(int i=0; i<adjacencyList[n1.intValue()].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[n1.intValue()].elementAt(i).intValue() == n2)
-						{
-							k=1;
-						}
-					}
-					if(k==0)	// Edge doesn't already exist. Good, add it!
-					{
-						found = true;
-						addBidirNeighbor(n1, n2);
-						//System.out.println("ADD: ("+ n1 + ", " + n2 + ")");
-					}
-				}
-				if(stop_sign==0)
-				{
-					if(iteration >= MAX_ITERATION){	// Give up if can't find a pair to link
-						System.out.println("WARNING: Unable to find new pair for link between:"+still_to_link);
-						stop_sign=1;
-						//return;
-					}
-					degrees.set(p1, new Integer(((Integer)(degrees.elementAt(p1))).intValue()+1));
-					degrees.set(p2, new Integer(((Integer)(degrees.elementAt(p2))).intValue()+1));
-					boolean deleted_p1 = false;
-					if(((Integer)degrees.elementAt(p1)).intValue() == degree){
-						// Degree exhausted => No longer available to connect
-						still_to_link.remove(p1);
-						degrees.remove(p1);
-						deleted_p1 = true;
-					}
-
-					// Just adjusting the vector index here, nothing related to high-level function
-					int p2_updated;
-					if(deleted_p1 && p1 < p2)
-						p2_updated = p2-1;
-					else
-						p2_updated = p2;
-
-					if(((Integer)degrees.elementAt(p2_updated)).intValue() == degree){
-						// Degree exhausted => No longer available to connect
-						still_to_link.remove(p2_updated);
-						degrees.remove(p2_updated);
-					}
-				}
-			}
-		}*/	
-		/*for(int i=0; i<noNodes; i++)
-								  {
-								  System.out.println(adjacencyList[i].size());
-								  }*/
 	}
+
 	private void populateAdjacencyList(int swdeg, int degree, int mode, int ex_size, int nsvrs){
 		int old_size = noNodes - ex_size;
 
@@ -1641,183 +1289,6 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 				}
 			}
 		}
-		/*
-		//second run. do the expansion.
-		if(mode>0 && ex_size>0)
-		{
-
-			for(int fish = noNodes-ex_size; fish < noNodes; fish++) // for each new fish
-			{
-
-				int idegree=0; // the current degree of node i
-				int iter=0; //the # of attempts
-				int mom_i_found_it=0;
-				//we want to break "degree/2" edges
-				//suppose we choose edge (a,b) to break, then following three conditions has to meet:
-				//1) (a,b) has an edge
-				//2) (i,a) has no edge
-				//3) (i,b) has no edge.
-				while(idegree <=  (degree - 2) && iter++ < 8000)
-				{
-					int p1=fish;
-					int p2=fish;
-					while(p1 == fish || p1 == p2){
-						p1 = rand.nextInt(noNodes);
-					}
-					while(p2 == fish || p2 == p1){
-						p2 = rand.nextInt(noNodes);
-					}
-					//now we have p1 != fish, p2 != fish, p1 != p2
-
-					// Check if an (p1, p2) edge already exists
-					int k1=0;
-					for(int i=0; i<adjacencyList[p1].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[p1].elementAt(i).intValue() == p2)
-						{
-							k1=1;
-						}
-					}
-					// Check if (fish,p1) edge already exists
-					int k2=0;
-					for(int i=0; i<adjacencyList[fish].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[fish].elementAt(i).intValue() == p1)
-						{
-							k2=1;
-						}
-					}
-					// Check if (fish,p2) edge already exists
-					int k3=0;
-					for(int i=0; i<adjacencyList[fish].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[fish].elementAt(i).intValue() == p2)
-						{
-							k3=1;
-						}
-					}
-
-					if(k1==1 && k2 == 0 && k3 == 0)	// Good keyboard, break it!
-					{
-						addBidirNeighbor(fish, p1);
-						addBidirNeighbor(fish, p2);
-						removeBidirNeighbor(p1, p2);
-
-						//System.out.println(adjacencyList[p1].size());
-						//System.out.println(adjacencyList[p2].size());
-						//System.out.println(adjacencyList[fish].size());
-						//System.out.println("=========");
-						idegree+=2;
-
-						//System.out.println("ADD: ("+ fish + ", " + p1 + ")");
-						//System.out.println("ADD: ("+ fish + ", " + p2 + ")");
-						//System.out.println("RM : ("+  p1  + ", " + p2 + ")");
-
-						mom_i_found_it = 1;
-					}
-				}
-				if(mom_i_found_it==0){	// Give up if can't find a proper link
-					System.out.println("WARNING: Dad, this is so weird");
-					//return;
-				}
-			}
-		}
-
-
-		//third run.
-		if(mode>0 && ex_size>0)
-		{
-			Vector still_to_link = new Vector(noNodes);		// Nodes with some degree still available
-			Vector degrees = new Vector(noNodes);			// Degree currently used up
-
-			for(int i = 0; i < noNodes; i++){
-				if(adjacencyList[i].size() != degree)
-				{
-					still_to_link.add(new Integer(i));			// Initialize with all nodes
-					degrees.add(new Integer(adjacencyList[i].size()));				// Initialize with '0' used degree
-				}
-			}
-
-			int stop_sign=0;	
-			while(!still_to_link.isEmpty() && stop_sign==0){
-				if(still_to_link.size() == 1){				// Ignores this case of 1 node left out
-					System.out.println("WARNING: Remaining just one node to link with degree "+degrees.elementAt(0)+" out of "+degree);
-					stop_sign=1;
-					//return;
-				}
-				boolean found = false;
-
-				int p1 = -1, p2 = -1;
-				Integer n1,n2;
-
-				int iteration = 0;
-				int MAX_ITERATION = 1000;
-				while(!found && iteration++ < MAX_ITERATION && stop_sign == 0){ // try until a node-pair to connect is found
-					p1 = rand.nextInt(still_to_link.size());
-					p2 = p1;
-					while(p2 == p1){
-						p2 = rand.nextInt(still_to_link.size());
-					}
-
-					n1 = (Integer)still_to_link.elementAt(p1);
-					n2 = (Integer)still_to_link.elementAt(p2);
-
-					// Check if an n1-n2 edge already exists
-					int k=0;
-					for(int i=0; i<adjacencyList[n1.intValue()].size(); i++)
-					{
-						//if(adjacencyList[n1.intValue()].contains(n2) == false){
-						if(adjacencyList[n1.intValue()].elementAt(i).intValue() == n2)
-						{
-							k=1;
-						}
-					}
-					if(k==0)	// Edge doesn't already exist. Good, add it!
-					{
-						found = true;
-						addBidirNeighbor(n1, n2);
-						//System.out.println("ADD: ("+ n1 + ", " + n2 + ")");
-					}
-				}
-				if(stop_sign==0)
-				{
-					if(iteration >= MAX_ITERATION){	// Give up if can't find a pair to link
-						System.out.println("WARNING: Unable to find new pair for link between:"+still_to_link);
-						stop_sign=1;
-						//return;
-					}
-					degrees.set(p1, new Integer(((Integer)(degrees.elementAt(p1))).intValue()+1));
-					degrees.set(p2, new Integer(((Integer)(degrees.elementAt(p2))).intValue()+1));
-					boolean deleted_p1 = false;
-					if(((Integer)degrees.elementAt(p1)).intValue() == degree){
-						// Degree exhausted => No longer available to connect
-						still_to_link.remove(p1);
-						degrees.remove(p1);
-						deleted_p1 = true;
-					}
-
-					// Just adjusting the vector index here, nothing related to high-level function
-					int p2_updated;
-					if(deleted_p1 && p1 < p2)
-						p2_updated = p2-1;
-					else
-						p2_updated = p2;
-
-					if(((Integer)degrees.elementAt(p2_updated)).intValue() == degree){
-						// Degree exhausted => No longer available to connect
-						still_to_link.remove(p2_updated);
-						degrees.remove(p2_updated);
-					}
-				}
-			}
-		}*/	
-		/*for(int i=0; i<noNodes; i++)
-								  {
-								  System.out.println(adjacencyList[i].size());
-								  }*/
 	}
 
 	public static void main(String[] args){

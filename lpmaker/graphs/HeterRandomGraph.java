@@ -84,7 +84,7 @@ public class HeterRandomGraph extends RegularGraph{
 
 			int idegree=0; // the current degree of node i
 			int iter=0; //the # of attempts
-			int mom_i_found_it=0;
+			int foundSuitableLink=0;
 			//we want to break "degree/2" edges
 			//suppose we choose edge (a,b) to break, then following three conditions has to meet:
 			//1) (a,b) has an edge
@@ -149,10 +149,10 @@ public class HeterRandomGraph extends RegularGraph{
 					//System.out.println("ADD: ("+ fish + ", " + p2 + ")");
 					//System.out.println("RM : ("+  p1  + ", " + p2 + ")");
 
-					mom_i_found_it = 1;
+					foundSuitableLink = 1;
 				}
-				if(mom_i_found_it==0){	// Give up if can't find a proper link
-					if (iter > 5000) System.out.println("WARNING: Dad, this is so weird");
+				if(foundSuitableLink==0){	// Give up if can't find a proper link
+					if (iter > 5000) System.out.println("WARNING: can't find an appropriate link");
 					//return;
 				}
 			}
