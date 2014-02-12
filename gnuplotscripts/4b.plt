@@ -1,5 +1,9 @@
-# Note you need gnuplot 4.4 for the pdfcairo terminal.
+###  
+###  Released under the MIT License (MIT) --- see ../LICENSE
+###  Copyright (c) 2014 Ankit Singla, Sangeetha Abdu Jyothi, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey, Alexandra Kolla
+###  
 
+# Note you need gnuplot 4.4 for the pdfcairo terminal.
 set terminal pdfcairo font "Gill Sans, 8" linewidth 4 rounded
 
 # Line style for axes

@@ -9,15 +9,40 @@ Alexandra Kolla
 
 LICENSE / USE
 -------------
-The graphRepo directory contains a collection of network topologies, which are not our work. The sources for these are cited in graphRepo/references.pdf. All other code / scripts / materials are original contributions of the above contributors, and are made available for use and modification without any restrictions, but without any guarantees. We would appreciate you citing this code and the most relevant of our associated research publications below.
+The graphRepo directory contains a collection of network topologies, which are not our work. The sources for these are cited in graphRepo/references.pdf. All other code / scripts / materials are original contributions of the above contributors, and are released under the MIT LICENSE (see "./LICENSE"). 
+
+We would appreciate you citing this code and the most relevant of our associated research publications below.
 
 BACKGROUND
 --------------------
-The following three research papers explain the ideas behind this tool:
+The following three research papers (with their BibTex entries) explain the ideas behind this tool:
 
 (1) Jellyfish: Networking Data Centers Randomly (Ankit Singla, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey), 2012
+
+@inproceedings{singla2012jellyfish,
+  title={{Jellyfish: Networking Data Centers Randomly}},
+  author={Singla, Ankit and Hong, Chi-Yao and Popa, Lucian and Godfrey, P Brighten},
+  booktitle={{9th USENIX Symposium on Networked Systems Design and Implementation}},
+  year={2012}
+}
+
 (2) High Throughput Data Center Topology Design (Ankit Singla, P. Brighten Godfrey, Alexandra Kolla), 2014
+
+@inproceedings{singla2014heterogeneity,
+  title={{High Throughput Data Center Topology Design}},
+  author={Singla, Ankit and Godfrey, P Brighten and Kolla, Alexandra},
+  booktitle={{11th USENIX Symposium on Networked Systems Design and Implementation}},
+  year={2014}
+}
+
 (3) Measuring and Understanding Throughput of Network Topologies (Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, Alexandra Kolla), 2014
+
+@techreport{abduJyothi2014,
+  author = {Sangeetha Abdu Jyothi and Ankit Singla and P. Brighten Godfrey and Alexandra Kolla},
+  title = {{Measuring and Understanding Throughput of Network Topologies}},
+  note = "\url{http://arxiv.org/abs/1402.2531}",
+  year = {2014}
+}
 
 (1) establishes the case for using random graphs as data center topologies. (2) further shows that not only do random graphs achieve higher throughput than traditional topologies, they are actually close to optimal. (2) also extends our results to heterogeneous topology design, where switches might not all have the same number of ports or the same line-speeds throughput. (3) explains the rationale for our use of the throughput metric and compares a large number of networks for throughput.
 

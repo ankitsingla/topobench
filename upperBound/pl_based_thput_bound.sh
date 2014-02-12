@@ -1,4 +1,8 @@
-#!/bin/bash
+###  
+###  Released under the MIT License (MIT) --- see ../LICENSE
+###  Copyright (c) 2014 Ankit Singla, Sangeetha Abdu Jyothi, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey, Alexandra Kolla
+###  
+
 
 javac AvgPLBound.java
 rm -rf inc_*.txt

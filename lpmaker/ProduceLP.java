@@ -1,3 +1,8 @@
+/* *******************************************************
+ * Released under the MIT License (MIT) --- see ../LICENSE
+ * Copyright (c) 2014 Ankit Singla, Sangeetha Abdu Jyothi, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey, Alexandra Kolla
+ * ******************************************************** */
+
 /* The main class takes as inputs various parameters and constructs the desired graph type with
    its specified parameters. The Graph class has methods to print the linear program with the 
    specified graph type and the specified traffic matrix. You may add your own traffic matrices

@@ -1,4 +1,7 @@
-#!/bin/bash
+###  
+###  Released under the MIT License (MIT) --- see ../LICENSE
+###  Copyright (c) 2014 Ankit Singla, Sangeetha Abdu Jyothi, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey, Alexandra Kolla
+###  
 
 NRUNS=3         # Reduced for sake of running time.
 MYJAVAPATH="../"

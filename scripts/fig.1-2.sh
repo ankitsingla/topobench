@@ -1,4 +1,8 @@
-#!/bin/bash
+###  
+###  Released under the MIT License (MIT) --- see ../LICENSE
+###  Copyright (c) 2014 Ankit Singla, Sangeetha Abdu Jyothi, Chi-Yao Hong, Lucian Popa, P. Brighten Godfrey, Alexandra Kolla
+###  
+
 
 # First get the set of configurations to test
 # The output of configuration format: <Number of switches> <network degree> <svrs per switch> <ASPL lower bound> <Throughput upper bound>
