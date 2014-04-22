@@ -78,6 +78,8 @@ NOTES
 -----
 * Error handling is poor at this time. For example, if you're running networks that are too large, there will be memory errors etc. These have not been gracefully handled so far.
 
+* In order to support scalability under all-to-all traffic, a simplified version of the LP has been added. While both the LPs yield the same result, the new version runs faster under dense traffic matrices such as all-to-all. Please note that the results in the papers were computed using the old version.
+
 * This README, another README in upperBound, our papers mentioned above, and the comments in the code are the entirety of the documentation available. You can reach us at the email addresses mentioned above for other queries. Help is not promised, but if we have time, we can look into it.
 
 * The scripts use gnuplot 4.4 or higher (for the pdfcairo terminal). But if you don't have it, you can still get the result files in 'resultfiles' and plot them whichever way you like.

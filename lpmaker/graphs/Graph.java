@@ -1220,4 +1220,167 @@ public class Graph
 			e.printStackTrace();
 		}
 	}
+
+	public void PrintSimpleGraph(String filename, int trafficmode)
+	{
+		modifiedFloydWarshall();
+		int r=noNodes; //# of ToR switches
+		int svrs=totalWeight;
+
+		try
+		{
+			// traffic-mode: 0 = randPerm; 1 = all-all; 2 = all-to-one; Any higher n means stride(n)
+			ArrayList<TrafficPair> rndmap;
+			if (trafficmode == 0) {rndmap = RandomPermutationPairs(svrs); System.out.println("RAND-PERM TRAFFIC ************");}
+			else if (trafficmode == 1) {rndmap = TrafficGenAllAll(); System.out.println("All-all *********************");}
+			else if (trafficmode == 2) rndmap = TrafficGenAllToOne();
+			else rndmap = TrafficGenStride(trafficmode);
+
+			
+			FileWriter fstream = new FileWriter(filename);
+			BufferedWriter out = new BufferedWriter(fstream);
+			
+			int numEdges = 0;
+			for(int i=0; i<noNodes; i++)
+			{
+				numEdges += adjacencyList[i].size();
+			}	
+
+
+
+			int edgeID = 0;
+			int edgeCapacity = 1;
+			for(int i=0; i<noNodes; i++)
+			{
+				for(int j=0; j<adjacencyList[i].size(); j++)
+				{
+					edgeID++;
+				}
+
+			}
+
+			System.out.println("Number of edges " + edgeID);
+			System.out.println("Map size " + rndmap.size());
+
+			for (int i = 0; i < rndmap.size(); i++) {
+				int from = rndmap.get(i).from;
+				int to=rndmap.get(i).to;
+
+				int fromsw=svrToSwitch(from);
+				int tosw=svrToSwitch(to);
+
+				// I'm counting only number of connections
+				//if (switchLevelMatrix[fromsw][tosw] != 0) nCommodities ++;
+
+				if (fromsw == tosw) continue;
+
+				if (switchLevelMatrix[fromsw][tosw] == 0) nCommodities ++;
+
+				switchLevelMatrix[fromsw][tosw] ++;
+
+			}
+
+
+			int numFlows = 0;
+			for (int f = 0; f < noNodes; f++){			
+				for (int t = 0; t < noNodes; t++){
+					if(switchLevelMatrix[f][t]>0){
+						numFlows++;
+					}
+				}
+			}
+
+
+			int fid=0;
+			String constraint = "";
+
+			out.write("Maximize \n");
+			out.write("obj: ");
+			String objective = "K";
+			out.write(objective);
+
+			//Type 0 - Flows >= K 
+			out.write("\n\nSUBJECT TO \n\\Type 0: Flow >= K\n");
+			System.out.println(new Date() + ": Starting part 0");
+
+			for (int f = 0; f < noNodes; f++){
+				for (int t = 0; t < noNodes; t++){
+		 			if(switchLevelMatrix[f][t]>0){
+							constraint = "c0_" + fid + ": ";
+							constraint += "- f_" + f + "_" + t +  " ";
+							constraint += " + " + switchLevelMatrix[f][t] + " K <= 0\n";
+							out.write(constraint);
+							fid++;
+				//			System.out.println("fid " + fid + " f " + f + " t " + t + " flows " + switchLevelMatrix[f][t]);
+						}
+				}
+			}
+
+
+			//Type 1 - sum (l_i_j_d) over d on link i_j less than link capacity
+			out.write("\n\\Type 1: Link capacity constraint\n");
+                        System.out.println(new Date() + ": Starting part 1");
+
+                       	for(int i=0; i<noNodes; i++){
+                                for(int j=0; j<adjacencyList[i].size(); j++){
+					constraint = "c2_" + i + "_" + adjacencyList[i].elementAt(j).intValue() + ": ";
+                                        for(int k=0; k<noNodes; k++){
+                                                constraint += " + l_"+ i + "_" + adjacencyList[i].elementAt(j).intValue() +"_" + k ;
+                                        }
+					constraint += " <= " +  adjacencyList[i].elementAt(j).linkcapacity + "\n";
+					out.write(constraint);
+                                }
+                        }
+
+			//Type 2 - flow conservation at nodes
+			out.write("\n\\Type 2: Flow conservation at node\n");
+			System.out.println(new Date() + ": Starting part 2");
+
+                        for(int i=0; i<noNodes; i++){
+				for(int k=0; k<noNodes; k++){
+					if (i!=k){
+						constraint = "c3_" + i + "_" + k + ": ";
+						if (switchLevelMatrix[i][k] > 0){
+							constraint += " f_" + i + "_" + k  ;	
+					
+						}
+
+	                                	for(int j=0; j<adjacencyList[i].size(); j++){
+							constraint += " + l_" + adjacencyList[i].elementAt(j).intValue() +"_" + i +"_" + k + " ";		
+						}
+	
+	                                        for(int j=0; j<adjacencyList[i].size(); j++){
+        	                                        constraint += " - l_" + i +"_" + adjacencyList[i].elementAt(j).intValue() +"_" + k + " ";              
+                	                        }
+
+						constraint+= " = 0\n";
+						out.write(constraint);
+					}
+					else if (i == k) {
+						constraint = "c3_" + i + "_" + k + ": ";
+						for(int j=0; j<noNodes; j++){
+							if(switchLevelMatrix[j][i] > 0){
+								constraint += " - f_" + j + "_" + i;
+							}
+						}
+	
+	                                        for(int j=0; j<adjacencyList[i].size(); j++){
+        	                                        constraint += " + l_" + adjacencyList[i].elementAt(j).intValue() +"_" + i +"_" + i + " ";      
+                	                        }
+                                                constraint+= " = 0\n";
+                                                out.write(constraint);
+						
+					}
+				}
+			}
+
+			out.close();
+		}
+		catch (Exception e)
+		{
+			System.err.println("PrintSimpleGraph Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 }
