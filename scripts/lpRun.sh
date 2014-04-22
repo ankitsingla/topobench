@@ -18,4 +18,4 @@ else
 	echo "$objective"
 fi
 
-rm -rf templog
+rm -rf templog gurobi.log
