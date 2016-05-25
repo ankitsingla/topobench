@@ -1195,6 +1195,7 @@ public int svrtoswitch(int i)	//i is the server index. return the switch index.
 			int curr_weight = (t < nhdn) ? d_s : (d_s + 1);
 			weightEachNode[t] = curr_weight;
 			totalWeight += curr_weight;
+			weightBeforeEachNode[t+1] = curr_weight + weightBeforeEachNode[t];
 		}
 
 		System.out.println("WARNING: " + nhdn + " switches have " + d_n + " network ports, while " + nldn + " switches have " + (d_n -1) + " network ports");

@@ -34,6 +34,7 @@ public class Graph
 
 	//no of sub-hosts of a switch
 	public int[] weightEachNode;
+	public int[] weightBeforeEachNode;
 	public int totalWeight = 0;
 
 	//a common seed used for both PrintToMCF and PrintToMCFFair
@@ -408,9 +409,11 @@ public class Graph
 	protected void setUpFixWeight(int weight)
 	{
 		weightEachNode = new int[noNodes];
+		weightBeforeEachNode = new int[noNodes+1];
 		for(int i = 0; i < noNodes; i++)
 		{
 			weightEachNode[i] = weight;
+			weightBeforeEachNode[i] = i * weight;
 		}
 	}
 
@@ -633,6 +636,11 @@ public class Graph
 	{
 		return weightEachNode;
 	}
+
+    	public int[] getWeightBeforeEachNode()
+    	{
+        	return weightBeforeEachNode;
+    	}
 
 	public boolean isSwitch(int node_id)
 	{
@@ -928,6 +936,7 @@ public class Graph
 			if (trafficmode == 0) rndmap = RandomPermutationPairs(svrs);
 			else if (trafficmode == 1) rndmap = TrafficGenAllAll();
 			else if (trafficmode == 2) rndmap = TrafficGenAllToOne();
+			else if (trafficmode == 4) { rndmap = MaxWeightPairs("maxWeightMatch.txt");System.out.println("*******MAX-WEIGHT-MATCHING************");}
 			else rndmap = TrafficGenStride(trafficmode);
 			
 			FileWriter fstream = new FileWriter(filename);
@@ -1382,5 +1391,73 @@ public class Graph
 			e.printStackTrace();
 		}
 	}
+
+    //Get distances between servers
+    public void printServerDistance(String serverDistFile)
+    {
+        try
+        {
+            modifiedFloydWarshall();
+            FileWriter fstream = new FileWriter(serverDistFile);
+            BufferedWriter out = new BufferedWriter(fstream);
+
+            for (int i = 0 ; i < noNodes; i++)
+            {
+                for (int j = 0 ; j < noNodes; j++)
+                {
+                    if (weightEachNode[i] > 0 && weightEachNode[j] > 0 && i != j)
+                    {
+                        for (int node_i_svrs = 0; node_i_svrs < weightEachNode[i]; node_i_svrs++)
+                        {
+                            for (int node_j_svrs = 0; node_j_svrs < weightEachNode[j]; node_j_svrs++)
+                            {
+                                int server1 = weightBeforeEachNode[i] + node_i_svrs;
+                                int server2 = weightBeforeEachNode[j] + node_j_svrs;
+                                int printWeight = shortestPathLen[i][j] + 2;
+                                out.write(server1 + " " + server2 + " " + printWeight + "\n");
+                            }
+                        }
+                    }
+                }
+            }
+            out.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList MaxWeightPairs(String filename){
+        ArrayList<TrafficPair> ls = new ArrayList<TrafficPair>();
+        System.out.println (filename);
+        try
+        {
+            FileInputStream fstream = new FileInputStream(filename);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+            String strLine;
+
+            while ((strLine = br.readLine()) != null)   {
+                String[] matchedNodes = strLine.split(" ");
+                int svr1 = Integer.parseInt(matchedNodes[0]);
+                int svr2 = Integer.parseInt(matchedNodes[1]);
+                ls.add(new TrafficPair(svr1,svr2));
+                //    ls.add(new Pair(svr2,svr1));
+                System.out.println (svr1 + " " + svr2);
+            }
+
+            br.close();
+        }
+
+        catch (Exception e)
+        {
+            System.err.println("Max Weight Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return ls;
+    }
+
 
 }

@@ -369,5 +369,17 @@ public class Dragonfly extends Graph{
 				}
 			}
 		}
+       		setUpFixWeight(0);
+        	for(int t = 0; t < a * g ; t++){
+            		int curr_weight = 1;
+            		weightEachNode[t] = curr_weight;
+            		if(t == 0){
+                		weightBeforeEachNode[t] = 0;
+            		}
+            		weightBeforeEachNode[t+1] = curr_weight + weightBeforeEachNode[t];
+           		 totalWeight += curr_weight;
+
+       		}	
+
 	}
 }

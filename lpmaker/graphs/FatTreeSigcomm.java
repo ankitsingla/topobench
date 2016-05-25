@@ -144,15 +144,21 @@ public class FatTreeSigcomm extends Graph{
 		//set weights
 		setUpFixWeight(0);
 		//int total = 0;
+		weightBeforeEachNode[0] = 0;
 		for(int pod = 0; pod < K; pod++){
 			for(int i = 0; i < K/2; i++){
 				// For new comparison method, ANKIT changed this to set up arbitrary numbers of terminals!
 				weightEachNode[pod*K/2+i] = K/2;
 				totalWeight += K/2;
+				weightBeforeEachNode[pod*K/2+i + 1] = weightBeforeEachNode[pod*K/2+i] + K/2;
 				//weightEachNode[pod*K/2+i] = 5;
 				//totalWeight += 5;
 			}
 		}
+	        for (int i= K * K / 2; i < K * K * 5 / 4; i++) {
+        	    weightBeforeEachNode[i] = weightBeforeEachNode[i-1];
+        	}
+
 	}
 
 	

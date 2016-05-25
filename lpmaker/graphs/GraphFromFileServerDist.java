@@ -28,13 +28,16 @@ public class GraphFromFileServerDist extends RegularGraph{
 			BufferedReader br = new BufferedReader(new FileReader(fName));
 			String strLine = "";
 			int linenum = 0;
+			weightBeforeEachNode[0] = 0;
 			while ((strLine = br.readLine()) != null){
 				StringTokenizer strTok = new StringTokenizer(strLine);
 				int from = Integer.parseInt(strTok.nextToken());
 				int numsvr = Integer.parseInt(strTok.nextToken());
 				weightEachNode[from] = numsvr;
 				totalWeight += numsvr;
-
+		                if (from > 0) {
+                		    weightBeforeEachNode[from] = weightBeforeEachNode[from-1] + weightEachNode[from-1];
+                		}
 				while (strTok.hasMoreTokens()){
 					int to = Integer.parseInt(strTok.nextToken());
 					if (from < to) addBidirNeighbor(from, to);

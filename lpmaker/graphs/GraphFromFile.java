@@ -44,6 +44,10 @@ public class GraphFromFile extends Graph{
 		for(int t = 0; t < noNodes; t++){
 			int curr_weight = adjacencyList[t].size();		// easiest thing: same #servers as degree
 			weightEachNode[t] = curr_weight;
+                        if(t == 0){
+                                weightBeforeEachNode[t] = 0;
+                        }
+                        weightBeforeEachNode[t+1] = curr_weight + weightBeforeEachNode[t];
 			totalWeight += curr_weight;
 		}
 	}

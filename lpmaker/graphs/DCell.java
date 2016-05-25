@@ -100,10 +100,14 @@ public class DCell extends Graph{
 		for(i = 0; i < noSwitches; i++){
 			isSwitch[i] = true;
 			weightEachNode[i] = 0;
+                        weightBeforeEachNode[i]=0;
+                        weightBeforeEachNode[i+1]=0;
 		}
 		for(; i < noNodes; i++){
 			isSwitch[i] = false;
 			weightEachNode[i] = 1;
+                        totalWeight++;
+                        weightBeforeEachNode[i+1]=1+weightBeforeEachNode[i];
 		}
 	}
 	
