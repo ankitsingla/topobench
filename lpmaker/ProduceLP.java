@@ -65,13 +65,13 @@ public class ProduceLP {
 			System.out.println("nsvrs" + nsvrs);
 			Graph mynet = new RandomRegularGraph(switches,switchports, switchports - serverports, 1, extended_switches, nsvrs, fail_rate);
 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -79,13 +79,13 @@ public class ProduceLP {
 		{
 			System.out.println("FAT-SIZE = " + switchports);
 			Graph mynet = new FatTreeSigcomm(switchports, fail_rate); 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -107,13 +107,13 @@ public class ProduceLP {
 			// if z=1, a=2, p=2, h=2
 
 			Graph mynet = new Dragonfly(a, p, h, z); 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -121,13 +121,13 @@ public class ProduceLP {
 		{	
 			System.out.println("Start SWDC_hex Construction");
 			Graph mynet = new SWDC_hex(switches,switchports-serverports);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -136,13 +136,13 @@ public class ProduceLP {
 			int gridSize = Integer.parseInt(args[7]);
 			System.out.println("Start SWDC_2torus Construction");
 			Graph mynet = new SWDC_2torus(switches,switchports, serverports, gridSize);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -150,13 +150,13 @@ public class ProduceLP {
 		{	
 			System.out.println("Start SWDC_ring Construction");
 			Graph mynet = new SWDC_ring(switches,switchports);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -190,13 +190,13 @@ public class ProduceLP {
 			int curr_dhh = min_dhh;
 			while (curr_dhh < netH && curr_dhh < nh - 1) {
 				Graph mynet = new HeterRandomGraph(nh, nl, h, l, dh, dl, curr_dhh);
-				if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + curr_dhh + ".lp", trafficMode);
+				if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + curr_dhh + ".lp", trafficMode, 100);
 				if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
 	                        if (createLP == 1 && trafficMode == 4) {
         	                        mynet.printServerDistance("lpmaker/serverDist1.txt");
                 	                String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                         	        runCommand(cmd);
-                                	mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                	mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         	}
 				mynet.printPathLengths("pl." + curr_dhh);
 				curr_dhh += increment;
@@ -212,13 +212,13 @@ public class ProduceLP {
 			int dl = Integer.parseInt(args[15]);
 
 			Graph mynet = new HeterServerGraph(nh, nl, h, l, dh, dl);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -228,13 +228,13 @@ public class ProduceLP {
 			int aggsw = Integer.parseInt(args[11]);
 
 			Graph mynet = new VL2(aggsw, aggports); 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -244,39 +244,39 @@ public class ProduceLP {
 			int tors = Integer.parseInt(args[6]);		// > da * di / 4
 
 			Graph mynet = new RandVL2Compare(aggsw, aggports, tors);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
 		else if(graphtype==15) // Hypercube
 		{
 			Graph mynet = new Hypercube((int)(Math.log(switches)/Math.log(2)), serverports); 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
 		else if (graphtype == 16) // Butterfly 
 		{
 			Graph mynet = new FlattenedButterfly(1+serverports,1+((switchports-serverports)/serverports),switches);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -284,13 +284,13 @@ public class ProduceLP {
 		{
 			serverports = Integer.parseInt(args[6]);
 			Graph mynet = new LSPRamanujanII(switchports, switches, serverports); 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}
@@ -322,13 +322,13 @@ public class ProduceLP {
 			int curr_nl_nl = min_nl_nl;
 			while (curr_nl_nl < netL) {
 				Graph mynet = new HeterLineSpeeds(nh, nl, h1, h2, l, dh, dl, capH, capL, curr_nl_nl);
-				if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + curr_nl_nl + ".lp", trafficMode);
+				if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + curr_nl_nl + ".lp", trafficMode, 100);
 				if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
 	                        if (createLP == 1 && trafficMode == 4) {
         	                        mynet.printServerDistance("lpmaker/serverDist1.txt");
                 	                String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                         	        runCommand(cmd);
-                                	mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                	mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         	}
 				mynet.printPathLengths("pl." + curr_nl_nl);
 				curr_nl_nl += increment;
@@ -338,13 +338,13 @@ public class ProduceLP {
 			String graph_file = args[2];
 
 			Graph mynet = new GraphFromFile(switches, graph_file);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 
 			int[] degreeDist = new int[mynet.noNodes];
@@ -352,13 +352,13 @@ public class ProduceLP {
 				degreeDist[sw] = mynet.adjacencyList[sw].size();
 			}
 			Graph randCompare = new RandDegreeDist(switches, degreeDist);
-			if (createLP == 1 && trafficMode == 0) randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("randCompare." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 randCompare.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode);
+                                randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 			randCompare.printPathLengths("pl_randCompare." + runs);
@@ -377,23 +377,23 @@ public class ProduceLP {
 				svrdist[sw] = mynet.weightEachNode[sw];
 			}
 
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1 && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 
 			Graph randCompare = new RandDegreeDist(switches, degreeDist, svrdist);
-			if (createLP == 1  && trafficMode == 0) randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode);
+			if (createLP == 1  && trafficMode == 0) randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1  && trafficMode == 1) mynet.PrintSimpleGraph("randCompare." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 randCompare.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode);
+                                randCompare.PrintGraphforMCFFairCondensed("randCompare." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 			randCompare.printPathLengths("pl_randCompare." + runs);
@@ -412,13 +412,13 @@ public class ProduceLP {
 			int smallAggPorts = Integer.parseInt(args[13]);
 
 			Graph mynet = new RandVL2CompareMod(aggsw, aggports, tors, svrT, svrC, svrA, corePortsMorphed, aggPortsMorphed, smallCorePorts, smallAggPorts);
-			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+			if (createLP == 1 && trafficMode == 0) mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
 			if (createLP == 1  && trafficMode == 1) mynet.PrintSimpleGraph("my." + runs + ".lp", trafficMode);
                         if (createLP == 1 && trafficMode == 4) {
                                 mynet.printServerDistance("lpmaker/serverDist1.txt");
                                 String cmd = "python lpmaker/maxWeight.py lpmaker/serverDist1.txt maxWeightMatch.txt";
                                 runCommand(cmd);
-                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode);
+                                mynet.PrintGraphforMCFFairCondensed("my." + runs + ".lp", trafficMode, 100);
                         }
 			mynet.printPathLengths("pl." + runs);
 		}

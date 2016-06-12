@@ -920,7 +920,7 @@ public class Graph
 	}
 
 	// Uses a path-length based heuristic to determine that a certain flow on a certain link will be 0, so no need to factor in LP etc.
-	public void PrintGraphforMCFFairCondensed(String filename, int trafficmode)
+	public void PrintGraphforMCFFairCondensed(String filename, int trafficmode, int probability)
 	{
 
 		modifiedFloydWarshall();
@@ -1025,6 +1025,17 @@ public class Graph
 			int fid=0;
 			String constraint = "";
 			if (fair) {
+                // we need to set probability% of flows to large flows.
+                // Rand(100) < probability does not give desired distribution for small network sizes
+                // Hence, we shuffle the flows and choose the first round(prob% * totalFlows) number of flows
+                ArrayList<Integer> list = new ArrayList<Integer>();
+                for (int i = 0; i < curfID; i++) {
+                    list.add(new Integer(i));
+                }
+                Collections.shuffle(list);
+                float prob = (float) probability / 100;
+                int chooseCount = Math.round(prob * curfID);
+
 				//< Objective
 				out.write("Maximize \n");
 				out.write("obj: ");
@@ -1070,8 +1081,13 @@ public class Graph
 							}
 							if (writeCons == 1)
 							{
-								constraint += " + " + switchLevelMatrix[f][t] + " K <= 0\n";
-								out.write(constraint);
+                                Random rand = new Random();
+                                if (list.indexOf(fid) < chooseCount && probability < 100) {
+                                    constraint += " + " + 10*switchLevelMatrix[f][t] + " K <= 0\n";
+                                } else {
+                                    constraint += " + " + switchLevelMatrix[f][t] + " K <= 0\n";
+                                }
+                                out.write(constraint);
 							}
 							fid++;
 						}
