@@ -36,6 +36,14 @@ The following three research papers (with their BibTex entries) explain the idea
 }
 
 (3) Measuring and Understanding Throughput of Network Topologies (Sangeetha Abdu Jyothi, Ankit Singla, P. Brighten Godfrey, Alexandra Kolla), 2014
+@inproceedings{jyothi2016,
+ author = {Jyothi, Sangeetha Abdu and Singla, Ankit and Godfrey, P. Brighten and Kolla, Alexandra},
+ title = {Measuring and Understanding Throughput of Network Topologies},
+ booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis},
+ series = {SC '16},
+ year = {2016},
+ pages = {65:1--65:12},
+} 
 
 @techreport{abduJyothi2014,
   author = {Sangeetha Abdu Jyothi and Ankit Singla and P. Brighten Godfrey and Alexandra Kolla},
@@ -83,3 +91,5 @@ NOTES
 * This README, another README in upperBound, our papers mentioned above, and the comments in the code are the entirety of the documentation available. You can reach us at the email addresses mentioned above for other queries. Help is not promised, but if we have time, we can look into it.
 
 * The scripts use gnuplot 4.4 or higher (for the pdfcairo terminal). But if you don't have it, you can still get the result files in 'resultfiles' and plot them whichever way you like.
+
+* Facebook traffic matrices were retrieved from Roy et. al. [SIGCOMM'15]. We derive approximate relative weights through image processing on the traffic heatmaps. Please mail us to obtain these TMs. Absolute traffic values are not available.
